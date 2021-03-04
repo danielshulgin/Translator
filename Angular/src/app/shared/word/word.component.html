@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>Sugar Level List</mat-card-header>
+  <mat-card-content>
+<mat-list>
+  <mat-list-item *ngFor="let word of words">
+    <h3 mat-line>
+      <p>{{word.russian}} - {{word.english}}</p>
+      <a mat-button [routerLink]="['/sugarlevel-edit', word.id]"> - </a>
+    </h3>
+  </mat-list-item>
+</mat-list>
+  </mat-card-content>
+</mat-card>
