@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.EntityFrameworkCore.Design;
 using Translator.Domain.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Translator.EntityFramework.Configuration;
 
 namespace Translator.EntityFramework
 {
-    public class TranslatorDbContext : DbContext
+    public class TranslatorDbContext : IdentityDbContext<User>
     {
         public DbSet<Word> Words { get; set; }
 
@@ -26,7 +28,8 @@ namespace Translator.EntityFramework
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }

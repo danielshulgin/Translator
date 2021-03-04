@@ -6,7 +6,7 @@ namespace Translator.EntityFramework
 {
     public class TranslatorDbContextFactory : IDesignTimeDbContextFactory<TranslatorDbContext>
     {
-        private readonly string _connectionString;
+        private readonly string _connectionString = "server=(localdb)\\MSSQLLocalDB;Database=TranslatorDB;Trusted_Connection=True;";
 
 
         public TranslatorDbContextFactory()

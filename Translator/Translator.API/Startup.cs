@@ -1,10 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Translator.Domain.Models;
+using Translator.EntityFramework;
 
 namespace Translator.API
 {
@@ -21,6 +25,12 @@ namespace Translator.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(Startup));
+            services.AddDbContext<TranslatorDbContext>(opts =>opts.UseSqlServer("server=(localdb)\\MSSQLLocalDB;Database=TranslatorDB;Trusted_Connection=True;"));
+           
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<TranslatorDbContext>();
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
