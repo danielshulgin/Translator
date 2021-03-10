@@ -2,6 +2,7 @@ import { UserForRegistrationDto } from './../../_interfaces/user/userForRegistra
 import { AuthenticationService } from './../../shared/services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PasswordConfirmationValidatorService } from './../../shared/custom-validators/password-confirmation-validator.service';
 
 @Component({
   selector: 'app-register-user',
@@ -10,8 +11,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterUserComponent implements OnInit {
   public registerForm: FormGroup;
+  public errorMessage: string = '';
+  public showError: boolean;
 
-  constructor(private _authService: AuthenticationService) { }
+  constructor(private _authService: AuthenticationService, private _passConfValidator: PasswordConfirmationValidatorService) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({
@@ -21,6 +24,8 @@ export class RegisterUserComponent implements OnInit {
       password: new FormControl('', [Validators.required]),
       confirm: new FormControl('')
     });
+    this.registerForm.get('confirm').setValidators([Validators.required,
+    this._passConfValidator.validateConfirmPassword(this.registerForm.get('password'))]);
   }
 
   public validateControl = (controlName: string) => {
@@ -32,6 +37,7 @@ export class RegisterUserComponent implements OnInit {
   }
 
   public registerUser = (registerFormValue) => {
+    this.showError = false;
     const formValues = { ...registerFormValue };
 
     const user: UserForRegistrationDto = {
@@ -47,7 +53,8 @@ export class RegisterUserComponent implements OnInit {
       console.log("Successful registration");
     },
     error => {
-      console.log(error.error.errors);
+      this.errorMessage = error;
+      this.showError = true;
     })
   }
 }

@@ -28,7 +28,12 @@ namespace Translator.API
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<TranslatorDbContext>(opts =>opts.UseSqlServer("server=(localdb)\\MSSQLLocalDB;Database=TranslatorDB;Trusted_Connection=True;"));
            
-            services.AddIdentity<User, IdentityRole>()
+            services.AddIdentity<User, IdentityRole>(opt =>
+            {
+                opt.Password.RequiredLength = 7;
+                opt.Password.RequireDigit = false;
+                opt.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<TranslatorDbContext>();
 
             // In production, the Angular files will be served from this directory
