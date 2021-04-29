@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore.Design;
 using Translator.Domain.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Translator.EntityFramework.Configuration;
+using RoleConfiguration = Translator.Domain.Configuration.RoleConfiguration;
 
 namespace Translator.EntityFramework
 {
