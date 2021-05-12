@@ -24,6 +24,9 @@
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item">
+            <button class="btn btn-link" style="color: #140e0e80;" (click)="openTests()">Tests</button>
+          </li>
+          <li class="nav-item">
             <a class="nav-link"[routerLink]="['/authentication/login']" routerLinkActive="active"
               [routerLinkActiveOptions]="{exact: true}">Login</a>
           </li>
@@ -41,6 +44,9 @@
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
             <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+          </li>
+          <li class="nav-item">
+            <button class="btn btn-link" style="color: #140e0e80;" (click)="openTests()">Tests</button>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link text-dark" [routerLink]="['/counter']">Counter</a>
