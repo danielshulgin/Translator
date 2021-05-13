@@ -7,17 +7,26 @@
 </div>
 </div>
 </form>
-<p>{{word}}</p>
+
+<div *ngIf="translationExist">
+  <p>{{word}}</p>
+  <p>перевод: {{translation}}</p>
+  <div *ngIf="nounsTranslationExist">
+  <p>существительное:</p>
 <ul>
-  <li><a href='https://get.asp.net/'>ASP.NET Core</a> and <a href='https://msdn.microsoft.com/en-us/library/67ef8sbd.aspx'>C#</a> for cross-platform server-side code</li>
-  <li><a href='https://angular.io/'>Angular</a> and <a href='http://www.typescriptlang.org/'>TypeScript</a> for client-side code</li>
-  <li><a href='http://getbootstrap.com/'>Bootstrap</a> for layout and styling</li>
+  <li *ngFor="let n of nounsTranslations">{{n}}</li>
 </ul>
-<p>To help you get started, we've also set up:</p>
+</div>
+<div *ngIf="adjectivesTranslationExist">
+  <p>прилагательное:</p>
 <ul>
-  <li><strong>Client-side navigation</strong>. For example, click <em>Counter</em> then <em>Back</em> to return here.</li>
-  <li><strong>Angular CLI integration</strong>. In development mode, there's no need to run <code>ng serve</code>. It runs in the background automatically, so your client-side resources are dynamically built on demand and the page refreshes when you modify any file.</li>
-  <li><strong>123 Efficient production builds</strong>. In production mode, development-time features are disabled, and your <code>dotnet publish</code> configuration automatically invokes <code>ng build</code> to produce minified, ahead-of-time compiled JavaScript files.</li>
+  <li *ngFor="let a of adjectivesTranslations">{{a}}</li>
 </ul>
-<p>The <code>ClientApp</code> subdirectory is a standard Angular CLI application. If you open a command prompt in that directory, you can run any <code>ng</code> command (e.g., <code>ng test</code>), or use <code>npm</code> to install extra packages into it.</p>
+</div>
+<div *ngIf="verbsTranslationExist">
+  <p>глагол:</p>
+<ul>
+  <li *ngFor="let v of verbsTranslations">{{v}}</li>
+</ul>
+</div>
 </div>

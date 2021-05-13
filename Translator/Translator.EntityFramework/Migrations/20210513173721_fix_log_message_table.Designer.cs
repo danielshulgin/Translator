@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Translator.EntityFramework;
 
 namespace Translator.EntityFramework.Migrations
 {
     [DbContext(typeof(TranslatorDbContext))]
-    partial class TranslatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210513173721_fix_log_message_table")]
+    partial class fix_log_message_table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace Translator.EntityFramework.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0bd626bc-6a68-4270-8de1-d3c9d9b6187d",
-                            ConcurrencyStamp = "43725020-b398-4ddd-aeb2-b750a7150961",
+                            Id = "54696300-44ae-4824-b69b-06ac8b7ab85a",
+                            ConcurrencyStamp = "d019e94a-0cb9-47b0-bd0f-da176edffc55",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "c95e285e-221e-4365-9eeb-d05af0ec961a",
-                            ConcurrencyStamp = "1a569e0f-3fda-4692-bbc7-8f304b966163",
+                            Id = "970595e3-9487-4ffc-a964-65a219f5a5d4",
+                            ConcurrencyStamp = "273bbb91-a6c0-4da8-993a-9ec88bd58394",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -196,12 +198,6 @@ namespace Translator.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("Time")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 

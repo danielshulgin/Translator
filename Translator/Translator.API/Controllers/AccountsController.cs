@@ -21,6 +21,7 @@ namespace Translator.API.Controllers
         private readonly IMapper _mapper;
         private readonly JwtHandler _jwtHandler;
 
+
         public AccountsController(UserManager<User> userManager, IMapper mapper, JwtHandler jwtHandler)
         {
             _userManager = userManager;

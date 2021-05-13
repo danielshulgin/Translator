@@ -10,8 +10,8 @@ using Translator.EntityFramework;
 namespace Translator.EntityFramework.Migrations
 {
     [DbContext(typeof(TranslatorDbContext))]
-    [Migration("20210304171321_CreatingIdentityScheme")]
-    partial class CreatingIdentityScheme
+    [Migration("20210513174315_fix_log_message_table3")]
+    partial class fix_log_message_table3
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,6 +46,22 @@ namespace Translator.EntityFramework.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "0d0d2b94-fa52-4f0b-ab25-743762bfba08",
+                            ConcurrencyStamp = "38f08675-4679-40cc-8c25-12c5e804127b",
+                            Name = "Viewer",
+                            NormalizedName = "VIEWER"
+                        },
+                        new
+                        {
+                            Id = "065c108c-12d9-48ca-96cc-738b455c9a15",
+                            ConcurrencyStamp = "5ff3cd21-b750-4038-819d-34b118de7d3f",
+                            Name = "Administrator",
+                            NormalizedName = "ADMINISTRATOR"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -152,6 +168,72 @@ namespace Translator.EntityFramework.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Translator.Domain.Models.Collocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Words")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collocations");
+                });
+
+            modelBuilder.Entity("Translator.Domain.Models.LogMessage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("Time")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LogMessages");
+                });
+
+            modelBuilder.Entity("Translator.Domain.Models.Sentence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sentences");
+                });
+
             modelBuilder.Entity("Translator.Domain.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -229,6 +311,27 @@ namespace Translator.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdjectivesTranslations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Native")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NounsTranslations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VerbsTranslations")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 

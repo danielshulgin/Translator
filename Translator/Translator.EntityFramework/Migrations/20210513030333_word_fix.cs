@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Translator.EntityFramework.Migrations
 {
-    public partial class CreatingIdentityScheme : Migration
+    public partial class word_fix : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -46,6 +46,57 @@ namespace Translator.EntityFramework.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Collocations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    From = table.Column<int>(type: "int", nullable: false),
+                    To = table.Column<int>(type: "int", nullable: false),
+                    Words = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Translation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Collocations", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Sentences",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    From = table.Column<int>(type: "int", nullable: false),
+                    To = table.Column<int>(type: "int", nullable: false),
+                    Text = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Translation = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Sentences", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Words",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    From = table.Column<int>(type: "int", nullable: false),
+                    To = table.Column<int>(type: "int", nullable: false),
+                    Native = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Translations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    NounsTranslations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AdjectivesTranslations = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    VerbsTranslations = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Words", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -154,6 +205,16 @@ namespace Translator.EntityFramework.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "b02e4d43-ac69-4924-af82-46ccd6f70e0b", "9aeac30e-8663-4fe0-9d45-9a2577c4f338", "Viewer", "VIEWER" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { "a753750e-f351-4704-b33f-d061f17047b0", "a221f02d-401b-4395-abfe-8dfd5b2dd94f", "Administrator", "ADMINISTRATOR" });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -210,6 +271,15 @@ namespace Translator.EntityFramework.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Collocations");
+
+            migrationBuilder.DropTable(
+                name: "Sentences");
+
+            migrationBuilder.DropTable(
+                name: "Words");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

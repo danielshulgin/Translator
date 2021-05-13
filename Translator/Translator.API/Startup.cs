@@ -11,9 +11,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System.Threading.Tasks;
+using Translator.API.Controllers;
 using Translator.API.JwtFeatures;
 using Translator.Domain.Models;
 using Translator.EntityFramework;
+using Translator.EntityFramework.Services;
 
 namespace Translator.API
 {
@@ -57,17 +59,21 @@ namespace Translator.API
                     ValidAudience = jwtSettings.GetSection("validAudience").Value,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings.GetSection("securityKey").Value))
                 };
-                /*options.Events.OnForbidden = context =>
-                {
-                    var result = context.Result;
-                    return Task.CompletedTask;
-                };
-                options.Events.OnAuthenticationFailed = context =>
-                {
-                    var result = context.Result;
-                    return Task.CompletedTask;
-                };*/
             });
+            
+            var dbContextFactory = new TranslatorDbContextFactory();
+            var dbContext = dbContextFactory.CreateDbContext();
+            var dbServiceFactory = new DbServiceFactory(dbContextFactory);
+
+            var wordService = dbServiceFactory.Create(() => dbContext.Words);
+            var collocationService = dbServiceFactory.Create(() => dbContext.Collocations);
+            var sentencesService = dbServiceFactory.Create(() => dbContext.Sentences);
+            var logMessageService = dbServiceFactory.Create(() => dbContext.LogMessages);
+
+            services.Add(new ServiceDescriptor(typeof(DbGenericService<Word>), wordService));
+            services.Add(new ServiceDescriptor(typeof(DbGenericService<Collocation>), collocationService));
+            services.Add(new ServiceDescriptor(typeof(DbGenericService<Sentence>), sentencesService));
+            services.Add(new ServiceDescriptor(typeof(DbGenericService<LogMessage>), logMessageService));
 
             services.AddScoped<JwtHandler>();
             services.AddControllers();

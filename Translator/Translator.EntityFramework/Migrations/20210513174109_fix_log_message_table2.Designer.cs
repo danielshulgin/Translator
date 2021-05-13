@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Translator.EntityFramework;
 
 namespace Translator.EntityFramework.Migrations
 {
     [DbContext(typeof(TranslatorDbContext))]
-    partial class TranslatorDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210513174109_fix_log_message_table2")]
+    partial class fix_log_message_table2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,15 +50,15 @@ namespace Translator.EntityFramework.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "0bd626bc-6a68-4270-8de1-d3c9d9b6187d",
-                            ConcurrencyStamp = "43725020-b398-4ddd-aeb2-b750a7150961",
+                            Id = "d4ff44b6-8b13-4342-8db9-8f39c0ff0c40",
+                            ConcurrencyStamp = "2d5a32c2-6819-43ce-a6f9-9311b537aade",
                             Name = "Viewer",
                             NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "c95e285e-221e-4365-9eeb-d05af0ec961a",
-                            ConcurrencyStamp = "1a569e0f-3fda-4692-bbc7-8f304b966163",
+                            Id = "e4720b5a-29b4-4532-a632-c87783b89a92",
+                            ConcurrencyStamp = "a218712f-e5da-493b-a09b-372a693872ef",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });

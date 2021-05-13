@@ -10,8 +10,8 @@ using Translator.EntityFramework;
 namespace Translator.EntityFramework.Migrations
 {
     [DbContext(typeof(TranslatorDbContext))]
-    [Migration("20210304172000_InsertRoles")]
-    partial class InsertRoles
+    [Migration("20210513030333_word_fix")]
+    partial class word_fix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,15 +50,15 @@ namespace Translator.EntityFramework.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "d0542ec3-d941-4216-accc-2f32c5d86739",
-                            ConcurrencyStamp = "fe5f6b23-4871-493d-a6b8-f361b9b5dc90",
-                            Name = "Visitor",
-                            NormalizedName = "VISITOR"
+                            Id = "b02e4d43-ac69-4924-af82-46ccd6f70e0b",
+                            ConcurrencyStamp = "9aeac30e-8663-4fe0-9d45-9a2577c4f338",
+                            Name = "Viewer",
+                            NormalizedName = "VIEWER"
                         },
                         new
                         {
-                            Id = "4e6ad6f3-277b-42ef-a355-e48bd1d9f00b",
-                            ConcurrencyStamp = "6137b9a3-322d-428b-bdb5-f9a03892c791",
+                            Id = "a753750e-f351-4704-b33f-d061f17047b0",
+                            ConcurrencyStamp = "a221f02d-401b-4395-abfe-8dfd5b2dd94f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         });
@@ -168,6 +168,54 @@ namespace Translator.EntityFramework.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("Translator.Domain.Models.Collocation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Words")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Collocations");
+                });
+
+            modelBuilder.Entity("Translator.Domain.Models.Sentence", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translation")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Sentences");
+                });
+
             modelBuilder.Entity("Translator.Domain.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -245,6 +293,27 @@ namespace Translator.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdjectivesTranslations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("From")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Native")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NounsTranslations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("To")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Translations")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VerbsTranslations")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
