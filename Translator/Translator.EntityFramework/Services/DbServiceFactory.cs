@@ -9,12 +9,13 @@ namespace Translator.EntityFramework.Services
     {
         private readonly TranslatorDbContextFactory _dbContextFactory;
 
+        
         public DbServiceFactory(TranslatorDbContextFactory translatorDbContextFactory)
         {
             _dbContextFactory = translatorDbContextFactory;
         }
         
-        public DbGenericService<T> Create<T>(Func<DbSet<T>> dbSetProvider) where T : DomainObject
+        public IDbGenericService<T> Create<T>(Func<DbSet<T>> dbSetProvider) where T : DomainObject
         {
             return new DbGenericService<T>(_dbContextFactory, dbSetProvider);
         }

@@ -67,13 +67,13 @@ namespace Translator.API
 
             var wordService = dbServiceFactory.Create(() => dbContext.Words);
             var collocationService = dbServiceFactory.Create(() => dbContext.Collocations);
-            var sentencesService = dbServiceFactory.Create(() => dbContext.Sentences);
+            var sentenceService = dbServiceFactory.Create(() => dbContext.Sentences);
             var logMessageService = dbServiceFactory.Create(() => dbContext.LogMessages);
 
-            services.Add(new ServiceDescriptor(typeof(DbGenericService<Word>), wordService));
-            services.Add(new ServiceDescriptor(typeof(DbGenericService<Collocation>), collocationService));
-            services.Add(new ServiceDescriptor(typeof(DbGenericService<Sentence>), sentencesService));
-            services.Add(new ServiceDescriptor(typeof(DbGenericService<LogMessage>), logMessageService));
+            services.Add(new ServiceDescriptor(typeof(IDbGenericService<Word>), wordService));
+            services.Add(new ServiceDescriptor(typeof(IDbGenericService<Collocation>), collocationService));
+            services.Add(new ServiceDescriptor(typeof(IDbGenericService<Sentence>), sentenceService));
+            services.Add(new ServiceDescriptor(typeof(IDbGenericService<LogMessage>), logMessageService));
 
             services.AddScoped<JwtHandler>();
             services.AddControllers();

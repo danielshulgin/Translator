@@ -8,10 +8,10 @@ namespace Translator.API.Controllers.RequestChainOfResponsibility
 {
     public class CollocationsHandler : BaseRequestHandler<string, TranslationResponseDto>
     {
-        private readonly DbGenericService<Collocation> _collocationService;
+        private readonly IDbGenericService<Collocation> _collocationService;
         
         
-        public CollocationsHandler(DbGenericService<Collocation> collocationService)
+        public CollocationsHandler(IDbGenericService<Collocation> collocationService)
         {
             _collocationService = collocationService;
         }

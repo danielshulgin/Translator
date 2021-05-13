@@ -317,6 +317,7 @@
         <e p="services" t="Include">
           <e p="DbGenericService.cs" t="Include" />
           <e p="DbServiceFactory.cs" t="Include" />
+          <e p="IDbGenericService.cs" t="Include" />
           <e p="NonQueryDataService.cs" t="Include" />
           <e p="WordService.cs" t="Include" />
         </e>

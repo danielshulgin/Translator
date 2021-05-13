@@ -8,10 +8,10 @@ namespace Translator.API.Controllers.RequestChainOfResponsibility
 {
     public class SentencesHandler : BaseRequestHandler<string, TranslationResponseDto>
     {
-        private readonly DbGenericService<Sentence> _sentenceService;
+        private readonly IDbGenericService<Sentence> _sentenceService;
         
         
-        public SentencesHandler(DbGenericService<Sentence> sentenceService)
+        public SentencesHandler(IDbGenericService<Sentence> sentenceService)
         {
             _sentenceService = sentenceService;
         }

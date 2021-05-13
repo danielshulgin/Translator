@@ -6,7 +6,7 @@ using Translator.Domain.Models;
 
 namespace Translator.EntityFramework.Services
 {
-    public class DbGenericService<T> where T: DomainObject
+    public class DbGenericService<T> : IDbGenericService<T> where T: DomainObject
     {
         private readonly TranslatorDbContextFactory _contextFactory;
         private readonly NonQueryDataService<T> _nonQueryDataService;
@@ -31,22 +31,18 @@ namespace Translator.EntityFramework.Services
 
         public async Task<T> Get(int id)
         {
-            using (TranslatorDbContext context = _contextFactory.CreateDbContext())
-            {
-                T entity = await _entitiesProvider()
-                    .FirstOrDefaultAsync((e) => e.Id == id);
-                return entity;
-            }
+            await using var context = _contextFactory.CreateDbContext();
+            var entity = await _entitiesProvider()
+                .FirstOrDefaultAsync((e) => e.Id == id);
+            return entity;
         }
 
         public async Task<IEnumerable<T>> GetAll()
         {
-            using (TranslatorDbContext context = _contextFactory.CreateDbContext())
-            {
-                IEnumerable<T> entities = await _entitiesProvider()
-                    .ToListAsync();
-                return entities;
-            }
+            await using var context = _contextFactory.CreateDbContext();
+            IEnumerable<T> entities = await _entitiesProvider()
+                .ToListAsync();
+            return entities;
         }
 
         public async Task<T> Update(int id, T entity)

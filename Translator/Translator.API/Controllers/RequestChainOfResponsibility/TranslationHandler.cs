@@ -9,10 +9,10 @@ namespace Translator.API.Controllers.RequestChainOfResponsibility
 {
     public class TranslationHandler : BaseRequestHandler<string, TranslationResponseDto>
     {
-        private readonly DbGenericService<Word> _wordService;
+        private readonly IDbGenericService<Word> _wordService;
         
         
-        public TranslationHandler(DbGenericService<Word> wordService)
+        public TranslationHandler(IDbGenericService<Word> wordService)
         {
             _wordService = wordService;
         }
