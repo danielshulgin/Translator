@@ -42,13 +42,12 @@ export class HomeComponent {
     this.searchForm.value.word = "";
     this._translationService.getTranslation( "api/translations/translate",this.word).subscribe(
       (translationDto) => {
-       this.translation = translationDto.translations.toString();
        this.translationExist = true;
+       this.translation = translationDto.translations.toString();
        if(translationDto === null){
         this.translationExist = false;
         return;
        }
-       console.log(translationDto.nounsTranslations.toString());
        if(translationDto.nounsTranslations != null && translationDto.nounsTranslations.length > 0){
         this.nounsTranslationExist = true;
         this.nounsTranslations = translationDto.nounsTranslations;
@@ -70,6 +69,9 @@ export class HomeComponent {
        else{
         this.adjectivesTranslationExist = false;
        }
+       console.log(this.nounsTranslationExist);
+      console.log(this.verbsTranslationExist);
+      console.log(this.adjectivesTranslationExist);
       }
       ,
       (error)=>{

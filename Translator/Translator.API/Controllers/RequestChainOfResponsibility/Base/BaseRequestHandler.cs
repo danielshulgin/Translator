@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace Translator.API.Controllers.RequestChainOfResponsibility
+namespace Translator.API.Controllers.RequestChainOfResponsibility.Base
 {
     public abstract class BaseRequestHandler<TRequest, TResponse> : IRequestHandler<TRequest, TResponse>
     {

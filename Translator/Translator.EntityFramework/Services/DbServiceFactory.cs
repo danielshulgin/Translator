@@ -15,9 +15,9 @@ namespace Translator.EntityFramework.Services
             _dbContextFactory = translatorDbContextFactory;
         }
         
-        public IDbGenericService<T> Create<T>(Func<DbSet<T>> dbSetProvider) where T : DomainObject
+        public IDbGenericService<T> Create<T>() where T : DomainObject
         {
-            return new DbGenericService<T>(_dbContextFactory, dbSetProvider);
+            return new NonQueryDataService<T>(_dbContextFactory);
         }
     }
 }

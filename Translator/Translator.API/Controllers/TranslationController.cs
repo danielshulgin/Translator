@@ -8,6 +8,9 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Threading.Tasks;
 using Translator.API.Controllers.RequestChainOfResponsibility;
+using Translator.API.Controllers.RequestChainOfResponsibility.Base;
+using Translator.API.Controllers.RequestChainOfResponsibility.CommonRequestHandlers;
+using Translator.API.Controllers.RequestChainOfResponsibility.TranslationRequestHandlers;
 using Translator.API.DTO;
 using Translator.API.JwtFeatures;
 using Translator.Domain.Models;
@@ -20,25 +23,28 @@ namespace Translator.API.Controllers
     [ApiController]
     public class TranslationController : ControllerBase
     {
-        private readonly IRequestHandler<string, TranslationResponseDto> _translationChainOfResponsibility;
+        private readonly IRequestHandler<TranslationRequestDto, TranslationResponseDto> _translationChainOfResponsibility;
         
             
-        public TranslationController(DbGenericService<Sentence> sentenceService, 
-            DbGenericService<Word> wordService, 
-            DbGenericService<Collocation> collocationService,
-            DbGenericService<LogMessage> logMessageService)
+        public TranslationController(IDbGenericService<Sentence> sentenceService, 
+            IDbGenericService<Word> wordService, 
+            IDbGenericService<Collocation> collocationService,
+            IDbGenericService<LogMessage> logMessageService)
         {
-            var startLogHandler = 
-                new LogMessageHandler<string, TranslationResponseDto>(logMessageService,"start handle search request");
-            var translationHandler = new TranslationHandler(wordService);
-            var translationLogHandler = 
-                new LogMessageHandler<string, TranslationResponseDto>(logMessageService,"translations search request end");
+            var startLogHandler = new LogMessageHandler<TranslationRequestDto, TranslationResponseDto>(logMessageService,
+                "start handle search request");
+            
+            var translationHandler = new MainTranslationsHandler(wordService);
+            var translationLogHandler = new LogMessageHandler<TranslationRequestDto, TranslationResponseDto>(logMessageService,
+                "translations search request end");
+            
             var sentencesHandler = new SentencesHandler(sentenceService);
-            var sentencesLogHandler = 
-                new LogMessageHandler<string, TranslationResponseDto>(logMessageService,"sentences search request end");
+            var sentencesLogHandler = new LogMessageHandler<TranslationRequestDto, TranslationResponseDto>(logMessageService,
+                "sentences search request end");
+            
             var collocationsHandler = new CollocationsHandler(collocationService);
-            var collocationsLogHandler = 
-                new LogMessageHandler<string, TranslationResponseDto>(logMessageService,"sentences search request end");
+            var collocationsLogHandler = new LogMessageHandler<TranslationRequestDto, TranslationResponseDto>(logMessageService,
+                "collocations search request end");
 
             _translationChainOfResponsibility = startLogHandler
                 .AddNext(translationHandler)
@@ -52,7 +58,8 @@ namespace Translator.API.Controllers
         [HttpGet("Translate")]
         public async Task<IActionResult> Translate([FromQuery(Name = "word")] string word)
         {
-            return Ok(await _translationChainOfResponsibility.Handle(word, new TranslationResponseDto()));
+            return Ok(await _translationChainOfResponsibility.Handle(
+                new TranslationRequestDto(word), new TranslationResponseDto()));
         }
     }
 }

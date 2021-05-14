@@ -1,4 +1,5 @@
-﻿using Translator.Domain.Models;
+﻿using System.Collections.Generic;
+using Translator.Domain.Models;
 using Translator.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
@@ -6,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace Translator.EntityFramework.Services
 {
-    public class NonQueryDataService<T> where T : DomainObject
+    public class NonQueryDataService<T>  : IDbGenericService<T> where T : DomainObject
     {
         private readonly TranslatorDbContextFactory _contextFactory;
 
+        
         public NonQueryDataService(TranslatorDbContextFactory contextFactory)
         {
             _contextFactory = contextFactory;
@@ -17,38 +19,50 @@ namespace Translator.EntityFramework.Services
 
         public async Task<T> Create(T entity)
         {
-            using (TranslatorDbContext context = _contextFactory.CreateDbContext())
-            {
-                EntityEntry<T> createdResult = await context.Set<T>().AddAsync(entity);
-                await context.SaveChangesAsync();
+            await using var context = _contextFactory.CreateDbContext();
+            
+            var createdResult = await context.Set<T>().AddAsync(entity);
+            await context.SaveChangesAsync();
 
-                return createdResult.Entity;
-            }
+            return createdResult.Entity;
+        }
+        
+        public async Task<T> Get(int id)
+        {
+            await using var context = _contextFactory.CreateDbContext();
+            
+            var entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
+            return entity;
+        }
+
+        public async Task<IEnumerable<T>> GetAll()
+        {
+            await using var context = _contextFactory.CreateDbContext();
+            
+            var entities = await context.Set<T>().ToListAsync();
+            return entities;
         }
 
         public async Task<T> Update(int id, T entity)
         {
-            using (TranslatorDbContext context = _contextFactory.CreateDbContext())
-            {
-                entity.Id = id;
+            await using var context = _contextFactory.CreateDbContext();
+            
+            entity.Id = id;
+            context.Set<T>().Update(entity);
+            await context.SaveChangesAsync();
 
-                context.Set<T>().Update(entity);
-                await context.SaveChangesAsync();
-
-                return entity;
-            }
+            return entity;
         }
 
         public async Task<bool> Delete(int id)
         {
-            using (TranslatorDbContext context = _contextFactory.CreateDbContext())
-            {
-                T entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
-                context.Set<T>().Remove(entity);
-                await context.SaveChangesAsync();
+            await using var context = _contextFactory.CreateDbContext();
+            
+            var entity = await context.Set<T>().FirstOrDefaultAsync((e) => e.Id == id);
+            context.Set<T>().Remove(entity);
+            await context.SaveChangesAsync();
 
-                return true;
-            }
+            return true;
         }
     }
 }

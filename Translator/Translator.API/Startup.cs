@@ -21,13 +21,14 @@ namespace Translator.API
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+        
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
-
-        public IConfiguration Configuration { get; }
-
+        
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -62,13 +63,12 @@ namespace Translator.API
             });
             
             var dbContextFactory = new TranslatorDbContextFactory();
-            var dbContext = dbContextFactory.CreateDbContext();
             var dbServiceFactory = new DbServiceFactory(dbContextFactory);
 
-            var wordService = dbServiceFactory.Create(() => dbContext.Words);
-            var collocationService = dbServiceFactory.Create(() => dbContext.Collocations);
-            var sentenceService = dbServiceFactory.Create(() => dbContext.Sentences);
-            var logMessageService = dbServiceFactory.Create(() => dbContext.LogMessages);
+            var wordService = dbServiceFactory.Create<Word>();
+            var collocationService = dbServiceFactory.Create<Collocation>();
+            var sentenceService = dbServiceFactory.Create<Sentence>();
+            var logMessageService = dbServiceFactory.Create<LogMessage>();
 
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<Word>), wordService));
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<Collocation>), collocationService));

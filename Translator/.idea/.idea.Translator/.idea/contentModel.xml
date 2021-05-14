@@ -237,12 +237,18 @@
           <e p="AccountsController.cs" t="Include" />
           <e p="PrivacyController.cs" t="Include" />
           <e p="RequestChainOfResponsibility" t="Include">
-            <e p="BaseRequestHandler.cs" t="Include" />
-            <e p="CollocationsHandler.cs" t="Include" />
-            <e p="IRequestHandler.cs" t="Include" />
-            <e p="LogMessageHandler.cs" t="Include" />
-            <e p="SentencesHandler.cs" t="Include" />
-            <e p="TranslationHandler.cs" t="Include" />
+            <e p="Base" t="Include">
+              <e p="BaseRequestHandler.cs" t="Include" />
+              <e p="IRequestHandler.cs" t="Include" />
+            </e>
+            <e p="CommonRequestHandlers" t="Include">
+              <e p="LogMessageHandler.cs" t="Include" />
+            </e>
+            <e p="TranslationRequestHandlers" t="Include">
+              <e p="CollocationsHandler.cs" t="Include" />
+              <e p="MainTranslationsHandler.cs" t="Include" />
+              <e p="SentencesHandler.cs" t="Include" />
+            </e>
           </e>
           <e p="TranslationController.cs" t="Include" />
           <e p="WeatherForecastController.cs" t="Include" />
@@ -315,7 +321,6 @@
           </e>
         </e>
         <e p="services" t="Include">
-          <e p="DbGenericService.cs" t="Include" />
           <e p="DbServiceFactory.cs" t="Include" />
           <e p="IDbGenericService.cs" t="Include" />
           <e p="NonQueryDataService.cs" t="Include" />

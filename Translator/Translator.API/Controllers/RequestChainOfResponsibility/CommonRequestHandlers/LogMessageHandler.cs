@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Translator.API.DTO;
+using Translator.API.Controllers.RequestChainOfResponsibility.Base;
 using Translator.Domain.Models;
 using Translator.EntityFramework.Services;
 
-namespace Translator.API.Controllers.RequestChainOfResponsibility
+namespace Translator.API.Controllers.RequestChainOfResponsibility.CommonRequestHandlers
 {
     public class LogMessageHandler<TRequest, TResponse> : BaseRequestHandler<TRequest, TResponse>
     {

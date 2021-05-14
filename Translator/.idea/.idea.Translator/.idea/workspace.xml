@@ -23,9 +23,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f71a63b1-477d-4dc4-9f44-7d0289d503d2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/BaseRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/BaseRequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CollocationsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/CollocationsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/IRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/IRequestHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/LogMessageHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CommonRequestHandlers/LogMessageHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/SentencesHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/SentencesHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/MainTranslationsHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/TranslationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/TranslationController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.API/DTO/TranslationRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/DTO/TranslationRequestDto.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Translator.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbGenericService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbGenericService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbGenericService.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbServiceFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbServiceFactory.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/IDbGenericService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/IDbGenericService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/NonQueryDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/NonQueryDataService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,15 +78,25 @@
         <option value="$PROJECT_DIR$/Translator.EntityFramework/Services/ServiceFactory.cs" />
         <option value="$PROJECT_DIR$/Translator.EntityFramework/TranslatorDbContext.cs" />
         <option value="$PROJECT_DIR$/Translator.API/Controllers/TranslationResponseBuilder.cs" />
-        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CollocationsHandler.cs" />
-        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/SentencesHandler.cs" />
-        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationHandler.cs" />
         <option value="$PROJECT_DIR$/Translatore.Domain/Models/LogMessage.cs" />
         <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/LogMessageHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/SentencesHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CollocationsHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/MainTranslationsHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/SentencesHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/MainTranslationsHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/CollocationsHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CommonRequestHandlers/LogMessageHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/IRequestHandler.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/BaseRequestHandler.cs" />
         <option value="$PROJECT_DIR$/Translator.API/Controllers/TranslationController.cs" />
+        <option value="$PROJECT_DIR$/Translator.EntityFramework/Services/IDbGenericService.cs" />
+        <option value="$PROJECT_DIR$/Translator.EntityFramework/Services/NonQueryDataService.cs" />
         <option value="$PROJECT_DIR$/Translator.EntityFramework/Services/DbServiceFactory.cs" />
         <option value="$PROJECT_DIR$/Translator.EntityFramework/Services/DbGenericService.cs" />
         <option value="$PROJECT_DIR$/Translator.API/Startup.cs" />
+        <option value="$PROJECT_DIR$/Translator.API/DTO/TranslationRequestDto.cs" />
       </list>
     </option>
   </component>
@@ -129,7 +151,7 @@
       <option name="presentableId" value="Default" />
       <updated>1620848844552</updated>
       <workItem from="1620848914592" duration="24001000" />
-      <workItem from="1620913930724" duration="11087000" />
+      <workItem from="1620913930724" duration="16886000" />
     </task>
     <servers />
   </component>

@@ -11,7 +11,7 @@
 <div *ngIf="translationExist">
   <p>{{word}}</p>
   <p>перевод: {{translation}}</p>
-  <div *ngIf="nounsTranslationExist">
+<div *ngIf="nounsTranslationExist">
   <p>существительное:</p>
 <ul>
   <li *ngFor="let n of nounsTranslations">{{n}}</li>

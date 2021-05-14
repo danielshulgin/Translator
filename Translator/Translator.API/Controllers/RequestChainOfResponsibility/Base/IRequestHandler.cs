@@ -1,7 +1,6 @@
-﻿using System.Reflection.Metadata;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
-namespace Translator.API.Controllers.RequestChainOfResponsibility
+namespace Translator.API.Controllers.RequestChainOfResponsibility.Base
 {
     public interface IRequestHandler<in TRequest, TResponse>
     {
