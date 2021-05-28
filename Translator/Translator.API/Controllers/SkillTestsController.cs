@@ -35,28 +35,19 @@ namespace Translator.API.Controllers
         public async Task<IActionResult> Test()
         {
             var treeModel = (await _testTreeService.GetAll()).First();
-            var deserializedTree = JsonConvert.DeserializeObject<TestNode>(treeModel.JsonValue, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
             return Ok(treeModel.JsonValue);
         }
 
         [HttpPost("CheckTest")]
-        public async Task<IActionResult> CheckTest([FromBody] string tree)
+        public IActionResult CheckTest([FromBody] string tree)
         {
-            var treeModel = (await _testTreeService.GetAll()).First();
-            var deserializedTree = JsonConvert.DeserializeObject<TestNode>(treeModel.JsonValue, new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.Auto
-            });
             var deserializedUserTree = JsonConvert.DeserializeObject<GroupTestNode>(tree, new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.Auto
             });
             var earnedPoints = deserializedUserTree.CalculateEarnedPoints();
-            var fullPoints = deserializedTree.CalculateFullPoints();
-            return Ok( new CheckTestDto { EarnedPoints = earnedPoints, FullPoints = fullPoints});
+            var fullPoints = deserializedUserTree.CalculateFullPoints();
+            return Ok(new CheckTestDto { EarnedPoints = earnedPoints, FullPoints = fullPoints});
         }
     }
 }
