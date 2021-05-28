@@ -25,19 +25,6 @@
     <list default="true" id="f71a63b1-477d-4dc4-9f44-7d0289d503d2" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Translator/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/BaseRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/BaseRequestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CollocationsHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/CollocationsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/IRequestHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/Base/IRequestHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/LogMessageHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/CommonRequestHandlers/LogMessageHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/SentencesHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/SentencesHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/RequestChainOfResponsibility/TranslationRequestHandlers/MainTranslationsHandler.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Controllers/TranslationController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Controllers/TranslationController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/DTO/TranslationRequestDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/DTO/TranslationRequestDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.API/Startup.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.API/Startup.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbGenericService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbServiceFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/DbServiceFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/IDbGenericService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/IDbGenericService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Translator.EntityFramework/Services/NonQueryDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Translator.EntityFramework/Services/NonQueryDataService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,6 +139,8 @@
       <updated>1620848844552</updated>
       <workItem from="1620848914592" duration="24001000" />
       <workItem from="1620913930724" duration="16886000" />
+      <workItem from="1622051500588" duration="1784000" />
+      <workItem from="1622122440504" duration="517000" />
     </task>
     <servers />
   </component>
@@ -190,22 +179,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="178" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1620849127724" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1620913805128">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1622122963104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1620913805128" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1620913805127">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1622122963104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1622122963104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1620913805127" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1620913805125">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1622122963104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1622122963104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1620913805125" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1620913805128">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1622122963104" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1622122963104">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1620913805128" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1622122963104" />
     <state x="670" y="198" key="RiderGenerateDialog" timestamp="1620923963301">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

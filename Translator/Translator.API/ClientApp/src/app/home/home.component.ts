@@ -3,7 +3,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { TranslationService } from '../shared/services/translation.service';
 import { CommonModule } from "@angular/common";
-
+import { TestNode } from '../tests/models/testNode';
+import { TestNodeRoot } from '../tests/models/groupTestNode';
+import { SingleChoiceQuestions } from '../tests/models/singleChoiceQuestions';
+import { TextAnswerQuestion } from '../tests/models/textAnswerQuestion';
+import { SkillTestService } from '../shared/services/skill-test.service.service';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +32,8 @@ export class HomeComponent {
 
   public registerForm: FormGroup;
 
-  constructor(private _translationService: TranslationService) { }
+  constructor(private _translationService: TranslationService){
+   }
 
   ngOnInit(): void {
     this.searchForm = new FormGroup({

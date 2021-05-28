@@ -6,7 +6,6 @@ export class NavMenuUserState implements NavMenuState {
   constructor(private navMenuComponent: NavMenuComponent, private _router: Router) { }
 
   openTests(): void {
-    //this._router.navigate();
-    console.log("UserState");
+    this._router.navigate(["/tests"]);
   }
 }

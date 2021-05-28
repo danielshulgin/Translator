@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Translator.EntityFramework.Configuration;
 using RoleConfiguration = Translator.Domain.Configuration.RoleConfiguration;
 using System.Linq;
+using Translator.Domain.SkillTests;
 
 namespace Translator.EntityFramework
 {
@@ -20,6 +21,9 @@ namespace Translator.EntityFramework
         public DbSet<Collocation> Collocations { get; set; }
 
         public DbSet<LogMessage> LogMessages { get; set; }
+
+        public DbSet<TestTree> TestTrees { get; set; }
+
 
 
         public TranslatorDbContext(DbContextOptions options) : base(options)
@@ -63,6 +67,7 @@ namespace Translator.EntityFramework
             .HasConversion(
                 v => string.Join(',', v),
                 v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).ToList<string>());
+
         }
     }
 }

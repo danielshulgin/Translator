@@ -9,11 +9,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Text;
 using System.Threading.Tasks;
 using Translator.API.Controllers;
 using Translator.API.JwtFeatures;
 using Translator.Domain.Models;
+using Translator.Domain.Models.SkillTests;
+using Translator.Domain.SkillTests;
 using Translator.EntityFramework;
 using Translator.EntityFramework.Services;
 
@@ -35,6 +40,10 @@ namespace Translator.API
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(Startup));
             services.AddDbContext<TranslatorDbContext>(opts =>opts.UseSqlServer("server=(localdb)\\MSSQLLocalDB;Database=TranslatorDB;Trusted_Connection=True;"));
+            services.AddMvc(options =>
+            {
+                options.InputFormatters.Insert(0, new RawJsonBodyInputFormatter());
+            });
 
             services.AddIdentity<User, IdentityRole>(opt =>
             {
@@ -69,20 +78,41 @@ namespace Translator.API
             var collocationService = dbServiceFactory.Create<Collocation>();
             var sentenceService = dbServiceFactory.Create<Sentence>();
             var logMessageService = dbServiceFactory.Create<LogMessage>();
-
+            var testTreeService = dbServiceFactory.Create<TestTree>();
+            
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<Word>), wordService));
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<Collocation>), collocationService));
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<Sentence>), sentenceService));
             services.Add(new ServiceDescriptor(typeof(IDbGenericService<LogMessage>), logMessageService));
+            services.Add(new ServiceDescriptor(typeof(IDbGenericService<TestTree>), testTreeService));
 
             services.AddScoped<JwtHandler>();
             services.AddControllers();
+
+            PopulateTree(testTreeService);
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+        }
+
+        public void PopulateTree(IDbGenericService<TestTree> testTreeService)
+        {
+            var test11 = new SingleChoiseQuestion(2, "Question 1 bla bla bla bla bla?",
+                new List<string>() { "sdf", "sdfadsfasfsd", "right answer" }, 2, 0);
+            var test12 = new SingleChoiseQuestion(2, "Question 2 bla bla?",
+                new List<string>() { "sdasdfasdff", "sdfsd", "right answer" }, 2, 0);
+            var test3 = new TextAnswerQuestion(2, "Question 3 bla bla bla bla?", "1234", "");
+            var test4 = new TextAnswerQuestion(2, "Question 4 bla bla bla bla blaasdfasd?", "1234", "");
+            var test1 = new GroupTestNode(new List<TestNode>() { test11, test12 });
+            var testTreeRoot = new GroupTestNode(new List<TestNode>( ) { test1, test3, test4 });
+            string json = JsonConvert.SerializeObject(testTreeRoot, Formatting.Indented, new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.Objects
+            });
+            testTreeService.Create(new TestTree(json));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

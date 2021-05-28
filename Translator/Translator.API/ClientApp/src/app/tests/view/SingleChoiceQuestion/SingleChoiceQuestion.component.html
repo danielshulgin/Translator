@@ -1,0 +1,7 @@
+<a>{{data.QuestionText}}</a>
+<div *ngFor="let name of data.Answers">
+  <input type="checkbox"
+        [name]="name"
+        (change)="onChange($event)"
+        [disabled]="isChecked && (isCheckedName!=name)"> {{name}}
+</div>

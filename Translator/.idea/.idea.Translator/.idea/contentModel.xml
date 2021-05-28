@@ -206,6 +206,7 @@
                   <e p="repository.service.ts" t="Include" />
                   <e p="translation.service.ts" t="Include" />
                 </e>
+                <e p="test.html" t="Include" />
               </e>
             </e>
             <e p="assets" t="Include">
